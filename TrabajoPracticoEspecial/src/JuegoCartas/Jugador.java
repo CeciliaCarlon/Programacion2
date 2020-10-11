@@ -1,12 +1,11 @@
 package JuegoCartas;
 
-import java.util.ArrayList;
-
 public class Jugador {
 	
 	private String nombre;
 	private int puntos;
 	private Mazo poso;
+	private Carta carta;
 	
 	public Jugador(String nom) {
 		nombre=nom;
@@ -14,21 +13,11 @@ public class Jugador {
 	}
 	
 	public Carta elegirCarta(Mazo poso) { 
-		//poso.getCarta();
-		for (int i=0; i<poso.size(); i++) {
-			//pregunta sobre metodos random.
-			Carta cartaElegida= poso.get(i);
-		}
-		return cartaElegida;
+		return poso.getCartaElegida(poso);
 	}
 	
-	public int elegirAtributo() {
-		//agarra la carta en orden y elije atributo.
-		for(int i=0; i<c.getAtributo().size();i++) {
-			//elegir atributo de manera random
-			Atributo atributoElegido= //atributoAleatorio
-		}
-		return atributoElegido;
+	public Atributo elegirAtributo(Carta c) {
+		return c.getAtributoElegido(c);
 	}
 	
 	public int incrementarPuntos(int p) {
@@ -58,6 +47,11 @@ public class Jugador {
 	public void setPoso(Mazo poso) {
 		this.poso = poso;
 	}
+
+	public Carta getCarta() {
+		return carta;
+	}
+	
 	
 	
 }

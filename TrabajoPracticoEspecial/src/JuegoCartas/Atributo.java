@@ -3,9 +3,9 @@ package JuegoCartas;
 public class Atributo {
 	
 	private String nombre;
-	private Object valor;
+	private double valor;
 
-	public Atributo(String nombre, Object valor) {
+	public Atributo(String nombre, double valor) {
 		this.nombre=nombre;
 		this.valor=valor;
 	}
@@ -18,11 +18,11 @@ public class Atributo {
 		this.nombre = nombre;
 	}
 
-	public Object getValor() {
+	public double getValor() {
 		return valor;
 	}
 
-	public void setValor(Object valor) {
+	public void setValor(double valor) {
 		this.valor = valor;
 	}
 	

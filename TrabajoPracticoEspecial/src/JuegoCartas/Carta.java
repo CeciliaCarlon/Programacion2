@@ -14,14 +14,17 @@ public class Carta {
 		return new ArrayList<>(this.atributos);
 	}
 	
-	public Atributo getAtributoPorNombre(String nombre) {
-		//if para comprobar si existe.
-		for(int f=0; f<atributos.size(); f++) {
-			if(atributos.get(f).getNombre().equals(nombre)) {
-				return atributos.get(f);
-			}
+	public Atributo getAtributoElegido(Carta carta) {
+		ArrayList<Atributo> atributosElegidos= carta.getAtributo();
+		return atributosElegidos.get(((int) (Math.random() * atributosElegidos.size()) + 1));
+	}
+	
+	public int getCantidadAtributos() {
+		int cantidad=0;
+		for(int i=0; i<atributos.size();i++) {
+			cantidad++;
 		}
-		return null;
+		return cantidad;
 	}
 	
 	public void addAtributo(Atributo a) {
@@ -29,36 +32,29 @@ public class Carta {
 			this.atributos.add(a);
 		}
 		else {
-			actualizarAtributo(a);
+			actualizarAtributo(a.getNombre(), a.getValor());
 		}
 	}
 	
-	public void actualizarAtributo(Atributo atr) {
-		Atributo a = getAtributoPorNombre(nombre);
-		if(a!=null) {
-			a.setValor(valor);
+	public void actualizarAtributo(String nombre, double valor) {
+		Atributo atr= this.getAtributoPorNombre(nombre);
+		if(atr!=null) {
+			atr.setValor(valor);
 		}
-	}
-	
-	public void compararAtributos(Atributo atributo1, Atributo atributo2, Carta cartaJugador1, Carta cartaJugador2) {
-		if (atributo1.getValor()>atributo2.getValor()) {
-			jugador1.incrementarPuntos(puntos1);
-		}
-		else if(atributo2.getValor()>atributo1.getValor()){
-			jugador2.incrementarPuntos(puntos2);
-		}
-		else {
-			
-		}
-	}
-	
-	public boolean tieneAtributo(String nombre) {
-		Atributo a= this.getAtributo(nombre);
-		return (a!=null);
 	}
 	
 	public boolean tieneAtributo(Atributo a) {
 		return atributos.contains(a);
+	}
+	
+	public Atributo getAtributoPorNombre(String nombre) {
+		for (int i=0; i<atributos.size();i++) {
+			Atributo a= atributos.get(i);
+			if(a.getNombre().equals(nombre)) {
+				return a;
+			}
+		}
+		return null;
 	}
 	
 	@Override
