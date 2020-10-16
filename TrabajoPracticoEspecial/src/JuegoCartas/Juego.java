@@ -31,8 +31,7 @@ public class Juego {
 	}
 	
 	public void jugar() {
-		//crear mazo con json.
-		ArrayList<Mazo> posos=this.repartir(mazo);
+		ArrayList<Mazo> posos=this.repartir();
 		jugador1.setPoso(posos.get(0));
 		jugador2.setPoso(posos.get(1));
 		Mazo poso1= jugador1.getPoso();
@@ -93,17 +92,17 @@ public class Juego {
 		}
 	}
 	
-	public ArrayList<Mazo> repartir(Mazo mazoCentral) {
+	public ArrayList<Mazo> repartir() {
 		ArrayList<Mazo> posos= new ArrayList<>();
 		mazo.mezclar();
 		Mazo poso1= new Mazo();
 		Mazo poso2= new Mazo();
 		for(int i=0; i<mazo.getCartas().size()/2; i++) {
-			poso1.addCarta(mazo.getCartas().remove(i), mazoCentral);
+			poso1.addCarta(mazo.getCartas().remove(i));
 			posos.add(poso1);
 		}
 		for (int f=0;f<mazo.getCartas().size();f++){
-			poso2.addCarta(mazo.getCartas().remove(f), mazoCentral);
+			poso2.addCarta(mazo.getCartas().remove(f));
 			posos.add(poso2);
 		}
 		return posos;
@@ -120,17 +119,43 @@ public class Juego {
 	}	
 	
 	public void devolverCarta(Carta cartaJugador1, Carta cartaJugador2, Mazo poso1, Mazo poso2, Mazo mazoCentral) {
-		poso1.addCarta(cartaJugador1, mazoCentral);
-		poso2.addCarta(cartaJugador2, mazoCentral);
+		poso1.addCarta(cartaJugador1);
+		poso2.addCarta(cartaJugador2);
 	}
 	
 	public void juntarCarta(Carta cartaJugadorGanador, Carta cartaJugadorPerdedor, Mazo posoGanador, Mazo mazoCentral) {
-		posoGanador.addCarta(cartaJugadorGanador, mazoCentral);
-		posoGanador.addCarta(cartaJugadorPerdedor, mazoCentral);
+		posoGanador.addCarta(cartaJugadorGanador);
+		posoGanador.addCarta(cartaJugadorPerdedor);
 	}
 	
 	public void eliminarCartasElegidas(Carta carta1, Carta carta2, Mazo poso1, Mazo poso2) {
 		poso1.removeCarta(carta1);
 		poso2.removeCarta(carta2);
 	}
+
+	public Mazo getMazo() {
+		return mazo;
+	}
+
+	public void setMazo(Mazo mazo) {
+		this.mazo = mazo;
+	}
+
+	public Jugador getJugador1() {
+		return jugador1;
+	}
+
+	public void setJugador1(Jugador jugador1) {
+		this.jugador1 = jugador1;
+	}
+
+	public Jugador getJugador2() {
+		return jugador2;
+	}
+
+	public void setJugador2(Jugador jugador2) {
+		this.jugador2 = jugador2;
+	}
+	
+	
 }

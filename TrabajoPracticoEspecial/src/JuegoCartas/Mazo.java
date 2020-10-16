@@ -35,9 +35,9 @@ public class Mazo {
 		return cartas.get(((int) (Math.random() * cartas.size()) + 1));
 	}
 	
-	public void addCarta(Carta carta, Mazo mazoCentral) {
-		Criterio criterioCantidad= new CriterioCantidadAtributos(mazoCentral);
-		Criterio criterioTipo= new CriterioTipoAtributo(mazoCentral);
+	public void addCarta(Carta carta) {
+		Criterio criterioCantidad= new CriterioCantidadAtributos(this);
+		Criterio criterioTipo= new CriterioTipoAtributo(this);
 		if(criterioCantidad.cumple(carta) && criterioTipo.cumple(carta)) {
 			cartas.add(carta);
 		}
