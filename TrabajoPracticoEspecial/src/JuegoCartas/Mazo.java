@@ -14,17 +14,7 @@ public class Mazo {
 		Collections.shuffle(cartas);
 	}
 	
-	public void separaEnPosos(Mazo poso1, Mazo poso2, Mazo mazoCentral) {
-		
-		for(int i=0; i<cartas.size()/2;i++) {
-			poso1.addCarta(cartas.remove(i), mazoCentral);
-		}
-		for (int f=0;f<cartas.size();f++){
-			poso2.addCarta(cartas.remove(f), mazoCentral);
-		}
-	}
-	
-	public ArrayList<Carta> getCarta() {
+	public ArrayList<Carta> getCartas() {
 		return new ArrayList<>(this.cartas);
 	}
 	
@@ -32,8 +22,16 @@ public class Mazo {
 		return cartas.get(0);
 	}
 	
+	public int getCantidadCartas() {
+		int cantidad=0;
+		for(int i=0; i<this.cartas.size();i++) {
+			cantidad++;
+		}
+		return cantidad;
+	}
+	
 	public Carta getCartaElegida(Mazo mazo) {
-		ArrayList <Carta> cartas= mazo.getCarta();
+		ArrayList <Carta> cartas= mazo.getCartas();
 		return cartas.get(((int) (Math.random() * cartas.size()) + 1));
 	}
 	

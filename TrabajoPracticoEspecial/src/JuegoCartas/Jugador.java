@@ -17,7 +17,7 @@ public class Jugador {
 	}
 	
 	public Atributo elegirAtributo(Carta c) {
-		return c.getAtributoElegido(c);
+		return c.elegirAtributoAleatorio();
 	}
 	
 	public int incrementarPuntos(int p) {
@@ -52,6 +52,8 @@ public class Jugador {
 		return carta;
 	}
 	
-	
+	public String toString() {
+		return 	"La carta de "+ this.getNombre()+" es "+this.getCarta().getNombre()+" con "+this.getCarta().getAtributoElegido().getValor();
+	}
 	
 }

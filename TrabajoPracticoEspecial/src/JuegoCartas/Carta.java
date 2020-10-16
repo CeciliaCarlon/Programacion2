@@ -5,18 +5,26 @@ import java.util.*;
 public class Carta {
 
 	private ArrayList<Atributo> atributos;
+	private String nombre;
+	private Atributo atributoElegido;
 	
-	public Carta() {
+	public Carta(String nombre) {
+		this.nombre=nombre;
 		atributos= new ArrayList<>();
 	}
 	
-	public ArrayList<Atributo> getAtributo() {
+	public ArrayList<Atributo> getAtributos() {
 		return new ArrayList<>(this.atributos);
 	}
 	
-	public Atributo getAtributoElegido(Carta carta) {
-		ArrayList<Atributo> atributosElegidos= carta.getAtributo();
-		return atributosElegidos.get(((int) (Math.random() * atributosElegidos.size()) + 1));
+	public Atributo elegirAtributoAleatorio() {
+		ArrayList<Atributo> atributosElegidos= this.getAtributos();
+		atributoElegido= atributosElegidos.get(((int) (Math.random() * atributosElegidos.size()) + 1));
+		return atributoElegido;
+	}
+	
+	public Atributo getAtributoElegido() {
+		return atributoElegido;
 	}
 	
 	public int getCantidadAtributos() {
@@ -27,6 +35,18 @@ public class Carta {
 		return cantidad;
 	}
 	
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public void setAtributoElegido(Atributo atributoElegido) {
+		this.atributoElegido = atributoElegido;
+	}
+
 	public void addAtributo(Atributo a) {
 		if (!tieneAtributo(a)) {
 			this.atributos.add(a);
@@ -36,7 +56,7 @@ public class Carta {
 		}
 	}
 	
-	public void actualizarAtributo(String nombre, double valor) {
+	public void actualizarAtributo(String nombre, int valor) {
 		Atributo atr= this.getAtributoPorNombre(nombre);
 		if(atr!=null) {
 			atr.setValor(valor);
@@ -55,6 +75,18 @@ public class Carta {
 			}
 		}
 		return null;
+	}
+	
+	public Carta compararCartas(Carta carta) {
+		if(this.atributoElegido.compareTo(carta.atributoElegido)>0){
+			return this;
+		}
+		else if(atributoElegido.compareTo(carta.atributoElegido)<0) {
+			return carta;
+		}
+		else {
+			return null;
+		}
 	}
 	
 	@Override
