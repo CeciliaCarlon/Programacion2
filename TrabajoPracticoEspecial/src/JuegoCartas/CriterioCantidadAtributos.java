@@ -2,11 +2,10 @@ package JuegoCartas;
 
 public class CriterioCantidadAtributos extends Criterio {
 	
-	private int cantidad;
+	private int cantidad=0;
 	
-	public CriterioCantidadAtributos(Mazo m) {
-		Carta cartaCorrecta=m.getPrimeraCarta();
-		cantidad=cartaCorrecta.getCantidadAtributos();
+	public CriterioCantidadAtributos(int cant) {
+		this.cantidad=cant;
 	}
 	
 	@Override
@@ -19,15 +18,4 @@ public class CriterioCantidadAtributos extends Criterio {
 		}
 	}
 	
-	/*@Override
-	public boolean equals(Object obj) {
-		int cantidad=(int) obj;
-		try {
-			return this.getNombre().equals(otra.getNombre());
-		}
-		
-		catch(Exception e){
-			return false;
-		}
-	}*/
 }

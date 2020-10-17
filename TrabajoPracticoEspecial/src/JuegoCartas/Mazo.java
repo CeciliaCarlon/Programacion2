@@ -5,9 +5,11 @@ import java.util.*;
 public class Mazo {
 
 	private ArrayList<Carta> cartas;
+	private Criterio criterioCantidad;
+	private Criterio criterioTipo;
 	
 	public Mazo() {
-		new ArrayList<Carta>();
+		cartas= new ArrayList<>();
 	}
 	
 	public void mezclar() {
@@ -35,11 +37,20 @@ public class Mazo {
 		return cartas.get(((int) (Math.random() * cartas.size()) + 1));
 	}
 	
-	public void addCarta(Carta carta) {
-		Criterio criterioCantidad= new CriterioCantidadAtributos(this);
-		Criterio criterioTipo= new CriterioTipoAtributo(this);
-		if(criterioCantidad.cumple(carta) && criterioTipo.cumple(carta)) {
-			cartas.add(carta);
+	public void addCarta(Carta c) {
+		int cantidad= this.getPrimeraCarta().getCantidadAtributos();
+		ArrayList<Atributo> atributosCorrectos=this.getPrimeraCarta().getAtributos();
+		criterioCantidad= new CriterioCantidadAtributos(cantidad);
+		//criterioTipo= new CriterioTipoAtributo(atributosCorrectos); No creo que pasar un array como parametro este bien, pero no se que hacer.
+		if(cartas.size()<0) {
+			cartas.add(c);
+		}
+		else {
+			for(Carta carta: cartas) {
+				if(criterioCantidad.cumple(carta)) { // && (criterioTipo.cumple(carta));
+					cartas.add(carta);
+				}
+			}
 		}
 	}
 	

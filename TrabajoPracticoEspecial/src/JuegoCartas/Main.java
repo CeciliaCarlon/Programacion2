@@ -53,7 +53,7 @@ public class Main {
 		cartasSuper.setMazo(Main.cargarMazo(mazoPath));
 		cartasSuper.setJugador1(cecilia);
 		cartasSuper.setJugador2(mariana);
-		cartasSuper.jugar();
+		System.out.println(cartasSuper.getMazo().getCantidadCartas());
 	}
 
 }
