@@ -49,11 +49,22 @@ public class Main {
 		String mazoPath = "C:\\Users\\cecil\\eclipse-workspace\\TrabajoPracticoEspecial\\src\\JuegoCartas\\superheroes.json";
 		Jugador cecilia= new Jugador("Cecilia");
 		Jugador mariana= new Jugador("Mariana");
-		Juego cartasSuper= new Juego();
-		cartasSuper.setMazo(Main.cargarMazo(mazoPath));
-		cartasSuper.setJugador1(cecilia);
-		cartasSuper.setJugador2(mariana);
-		System.out.println(cartasSuper.getMazo().getCantidadCartas());
+		Mazo mazo= new Mazo();
+		mazo= cargarMazo(mazoPath);
+		//VisorMazo.mostrarMazo(mazoPath);
+		Juego juego= new Juego(cecilia, mariana, mazo);
+		juego.jugar();
+		/*
+		 * tira este error de vez en cuando
+		 * Exception in thread "main" java.lang.IndexOutOfBoundsException: Index: 5, Size: 5
+			at java.util.ArrayList.rangeCheck(Unknown Source)
+			at java.util.ArrayList.get(Unknown Source)
+			at JuegoCartas.Carta.elegirAtributoAleatorio(Carta.java:22)
+			at JuegoCartas.Jugador.elegirAtributo(Jugador.java:20)
+			at JuegoCartas.Juego.jugar(Juego.java:48)
+			at JuegoCartas.Main.main(Main.java:56)
+
+		 */
 	}
 
 }

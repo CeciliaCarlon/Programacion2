@@ -12,6 +12,12 @@ public class Mazo {
 		cartas= new ArrayList<>();
 	}
 	
+	public Mazo(Carta c1, Carta c2) {
+		cartas= new ArrayList<>();
+		cartas.add(c1);
+		cartas.add(c2);
+	}
+	
 	public void mezclar() {
 		Collections.shuffle(cartas);
 	}
@@ -21,7 +27,8 @@ public class Mazo {
 	}
 	
 	public Carta getPrimeraCarta() {
-		return cartas.get(0);
+		Carta c= cartas.get(0);
+		return c;
 	}
 	
 	public int getCantidadCartas() {
@@ -34,27 +41,26 @@ public class Mazo {
 	
 	public Carta getCartaElegida(Mazo mazo) {
 		ArrayList <Carta> cartas= mazo.getCartas();
-		return cartas.get(((int) (Math.random() * cartas.size()) + 1));
+		return cartas.get(((int) (Math.random() * cartas.size())));
 	}
 	
 	public void addCarta(Carta c) {
-		int cantidad= this.getPrimeraCarta().getCantidadAtributos();
-		ArrayList<Atributo> atributosCorrectos=this.getPrimeraCarta().getAtributos();
-		criterioCantidad= new CriterioCantidadAtributos(cantidad);
-		//criterioTipo= new CriterioTipoAtributo(atributosCorrectos); No creo que pasar un array como parametro este bien, pero no se que hacer.
-		if(cartas.size()<0) {
-			cartas.add(c);
+		if(cartas.size()==0) {
+			this.cartas.add(c);
 		}
 		else {
-			for(Carta carta: cartas) {
-				if(criterioCantidad.cumple(carta)) { // && (criterioTipo.cumple(carta));
-					cartas.add(carta);
-				}
+			if(c.equals(this.getPrimeraCarta())) {
+				this.cartas.add(c);
 			}
 		}
 	}
 	
 	public void removeCarta(Carta carta) {
 		cartas.remove(carta);
+	}
+	
+	@Override
+	public String toString() {
+		return cartas.toString();
 	}
 }

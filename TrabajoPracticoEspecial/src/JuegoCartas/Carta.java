@@ -18,8 +18,7 @@ public class Carta {
 	}
 	
 	public Atributo elegirAtributoAleatorio() {
-		ArrayList<Atributo> atributosElegidos= this.getAtributos();
-		atributoElegido= atributosElegidos.get(((int) (Math.random() * atributosElegidos.size()) + 1));
+		atributoElegido= this.atributos.get(((int) (Math.random() * atributos.size())));
 		return atributoElegido;
 	}
 	
@@ -29,7 +28,7 @@ public class Carta {
 	
 	public int getCantidadAtributos() {
 		int cantidad=0;
-		for(int i=0; i<atributos.size();i++) {
+		for(Atributo a: atributos) {
 			cantidad++;
 		}
 		return cantidad;
@@ -88,6 +87,25 @@ public class Carta {
 			return null;
 		}
 	}
+	//equals(preguntar cantidad, pregunta si tiene atributo con el mismo nombre).
+	@Override
+	public boolean equals(Object obj) {
+		Carta c= (Carta) obj;
+		boolean resultado=false;
+		try {
+			if(this.getCantidadAtributos()==c.getCantidadAtributos()) {
+				for(Atributo atributo: atributos) {
+					if(c.tieneAtributo(atributo)) {
+						resultado= true;
+					}
+				}
+			}
+			return resultado;
+		}
+		catch(Exception e) {
+			return false;
+		}
+	} 
 	
 	@Override
 	public String toString() {
