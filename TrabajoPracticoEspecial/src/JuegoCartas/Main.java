@@ -54,17 +54,7 @@ public class Main {
 		//VisorMazo.mostrarMazo(mazoPath);
 		Juego juego= new Juego(cecilia, mariana, mazo);
 		juego.jugar();
-		/*
-		 * tira este error de vez en cuando
-		 * Exception in thread "main" java.lang.IndexOutOfBoundsException: Index: 5, Size: 5
-			at java.util.ArrayList.rangeCheck(Unknown Source)
-			at java.util.ArrayList.get(Unknown Source)
-			at JuegoCartas.Carta.elegirAtributoAleatorio(Carta.java:22)
-			at JuegoCartas.Jugador.elegirAtributo(Jugador.java:20)
-			at JuegoCartas.Juego.jugar(Juego.java:48)
-			at JuegoCartas.Main.main(Main.java:56)
 
-		 */
 	}
 
 }

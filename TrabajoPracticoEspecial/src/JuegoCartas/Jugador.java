@@ -17,10 +17,6 @@ public class Jugador {
 		return carta;
 	}
 	
-	public Atributo elegirAtributo(Carta c) {
-		return c.elegirAtributoAleatorio();
-	}
-	
 	public boolean posoVacio() {
 		if(poso.getCantidadCartas()==0) {
 			return true;
@@ -30,8 +26,8 @@ public class Jugador {
 		}
 	}
 	
-	public int incrementarPuntos(int p) {
-		return p++;
+	public void incrementarPuntos() {
+		puntos++;
 	}
 
 	public String getNombre() {

@@ -4,8 +4,8 @@ import java.util.*;
 
 public class Juego {
 
-	private int puntos1;
-	private int puntos2;
+	//private int puntos1;
+	//private int puntos2;
 	private Jugador jugador1;
 	private Jugador jugador2;
 	private Mazo mazo;
@@ -14,8 +14,8 @@ public class Juego {
 	private int MAXRONDAS=10;
 	
 	public Juego(Jugador j1, Jugador j2, Mazo mazo) {
-		puntos1=0;
-		puntos2=0;
+		//puntos1=0;
+		//puntos2=0;
 		rondas=1;
 		this.jugador1=j1;
 		this.jugador2=j2;
@@ -23,8 +23,8 @@ public class Juego {
 	}
 	
 	public Juego(int maxrondas, Jugador j1, Jugador j2, Mazo mazo) {
-		puntos1=0;
-		puntos2=0;
+		//puntos1=0;
+		//puntos2=0;
 		rondas=1;
 		turno=false;
 		MAXRONDAS=maxrondas;
@@ -46,7 +46,6 @@ public class Juego {
 			Carta carta2=jugador2.elegirCarta(poso2);
 			poso1.removeCarta(carta1);
 			poso2.removeCarta(carta2);
-			System.out.println("SE MUESTRA EN NUMERO DE CARTAS DENTRO DE LOS POSOS"+poso1.getCantidadCartas()+" - "+poso2.getCantidadCartas());
 			//SE ELIGE EL ATRIBUTO POR EL CUAL SE COMPITE Y SE IMPRIME POR PANTALLA
 			if(turno==false) {
 				Atributo atributo1=jugador1.elegirAtributo(carta1);
@@ -66,19 +65,16 @@ public class Juego {
 			}
 			//SE COMPARAN LOS ATRIBUTOS Y SE AGREGA: LOS PUNTOS, LAS CARTAS AL GANADOR E IMPRIME POR PANTALLA
 			if(carta1.compararCartas(carta2)==carta1) {
-				jugador1.incrementarPuntos(puntos1);
+				jugador1.incrementarPuntos();
 				poso1.addCarta(carta1);
 				poso1.addCarta(carta2);
-				System.out.println("SE MUESTRA EN NUMERO DE CARTAS DENTRO DE LOS POSOS"+poso1.getCantidadCartas()+" - "+poso2.getCantidadCartas());
 				System.out.println("Gana la ronda "+jugador1.getNombre());
 				turno=false;
 			}
 			else if(carta1.compararCartas(carta2)==carta2) {
-				jugador2.incrementarPuntos(puntos2);
+				jugador2.incrementarPuntos();
 				poso2.addCarta(carta1);
-				System.out.println("SE MUESTRA EN NUMERO DE CARTAS DENTRO DE LOS POSOS"+poso1.getCantidadCartas()+" - "+poso2.getCantidadCartas());
 				poso2.addCarta(carta2);
-				System.out.println("SE MUESTRA EN NUMERO DE CARTAS DENTRO DE LOS POSOS"+poso1.getCantidadCartas()+" - "+poso2.getCantidadCartas());
 				System.out.println("Gana la ronda "+jugador2.getNombre());
 				turno=true;
 			}	
@@ -91,8 +87,12 @@ public class Juego {
 			rondas++;
 		}
 		//SALE DEL WHILE E IMPRIME AL GANADOR.
-		//Jugador ganador=this.getGanador();
-		//System.out.println("El ganador del juego es"+ ganador.getNombre());
+		Jugador ganador=this.getGanador();
+		if(ganador==null) {
+			System.out.println("Empate!!");
+		}
+		System.out.println("El ganador del juego es "+ ganador.getNombre());
+		this.devolverCartasAMazo(poso1, poso2);
 	}
 	
 	public ArrayList<Mazo> repartir() {
@@ -100,21 +100,38 @@ public class Juego {
 		mazo.mezclar();
 		Mazo poso1= new Mazo();
 		Mazo poso2= new Mazo();
-		for(int i=0; i<mazo.getCartas().size()/2; i++) {
-			poso1.addCarta(mazo.getCartas().remove(i));
-			posos.add(poso1);
+		int limite= mazo.getCantidadCartas();
+		for(int i=0; i<limite/2; i++) {
+			poso1.addCarta(mazo.getPrimeraCarta());
+			mazo.removeCarta(mazo.getPrimeraCarta());
 		}
-		for (int f=0;f<mazo.getCartas().size();f++){
-			poso2.addCarta(mazo.getCartas().remove(f));
-			posos.add(poso2);
+		limite= mazo.getCantidadCartas();
+		for (int f=0;f<limite;f++){
+			poso2.addCarta(mazo.getPrimeraCarta());
+			mazo.removeCarta(mazo.getPrimeraCarta());
 		}
+		posos.add(poso1);
+		posos.add(poso2);
 		return posos;
 	}
 	
+	public void devolverCartasAMazo(Mazo poso1, Mazo poso2) {
+		int limite= poso1.getCantidadCartas();
+		for(int i=0; i<limite; i++) {
+			mazo.addCarta(poso1.getPrimeraCarta());
+			poso1.removeCarta(poso1.getPrimeraCarta());
+		}
+		limite= poso2.getCantidadCartas();
+		for(int i=0; i<limite; i++) {
+			mazo.addCarta(poso2.getPrimeraCarta());
+			poso2.removeCarta(poso2.getPrimeraCarta());
+		}
+	}
+	
 	public Jugador getGanador() {
-		if (puntos1>puntos2) {
+		if (jugador1.getPuntos()>jugador2.getPuntos()) {
 			return jugador1;
-		} else if (puntos2>puntos1) {
+		} else if (jugador2.getPuntos()>jugador1.getPuntos()) {
 			return jugador2;
 		} else {
 			return null;
