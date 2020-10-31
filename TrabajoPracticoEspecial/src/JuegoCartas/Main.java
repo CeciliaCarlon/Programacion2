@@ -10,6 +10,13 @@ import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 
+import JuegoCartas.Pocima.PocimaIncrementar;
+import JuegoCartas.Pocima.PocimaReductora;
+import JuegoCartas.Pocima.Pocima;
+import JuegoCartas.Pocima.PocimaValorEstatico;
+import JuegoCartas.Pocima.PocimaSelectiva;
+
+
 public class Main {
 	
 	public static Mazo cargarMazo(String jsonFile) {
@@ -46,14 +53,22 @@ public class Main {
     }
 
 	public static void main(String[] args) {
-		String mazoPath = "C:\\Users\\cecil\\eclipse-workspace\\TrabajoPracticoEspecial\\src\\JuegoCartas\\superheroes.json";
+		String mazoPath = "C:\\Users\\cecil\\eclipse-workspace2\\TrabajoPracticoEspecial\\src\\JuegoCartas\\superheroes.json";
 		Jugador cecilia= new Jugador("Cecilia");
-		Jugador mariana= new Jugador("Mariana");
+		Jugador carlos= new Jugador("Carlos");
 		Mazo mazo= new Mazo();
 		mazo= cargarMazo(mazoPath);
-		//VisorMazo.mostrarMazo(mazoPath);
-		Juego juego= new Juego(cecilia, mariana, mazo);
+		Pocima fortalecedora1= new PocimaIncrementar("Fortalecedora", 20);
+		Pocima kriptonita= new PocimaReductora("Kriptonita",25);
+		Pocima valeCuatro= new PocimaValorEstatico("Quiero vale cuatro",4);
+		Pocima fuerza= new PocimaSelectiva("Selectiva fuerza",35, "fuerza");
+		Juego juego= new Juego(cecilia, carlos, mazo);
+		juego.addPocima(valeCuatro);
+		juego.addPocima(fortalecedora1);
+		juego.addPocima(fuerza);
+		juego.addPocima(kriptonita);
 		juego.jugar();
+		System.out.println(juego.getJugador1().getCarta().getPocima());
 
 	}
 

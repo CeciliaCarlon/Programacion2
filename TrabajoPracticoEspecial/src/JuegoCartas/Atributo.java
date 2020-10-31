@@ -3,9 +3,9 @@ package JuegoCartas;
 public class Atributo implements Comparable<Atributo>{
 	
 	private String nombre;
-	private int valor;
+	private double valor;
 
-	public Atributo(String nombre, int valor) {
+	public Atributo(String nombre, double valor) {
 		this.nombre=nombre;
 		this.valor=valor;
 	}
@@ -18,17 +18,17 @@ public class Atributo implements Comparable<Atributo>{
 		this.nombre = nombre;
 	}
 
-	public int getValor() {
+	public double getValor() {
 		return valor;
 	}
 
-	public void setValor(int valor) {
+	public void setValor(double valor) {
 		this.valor = valor;
 	}
-	
+
 	@Override
 	public int compareTo(Atributo atributo) {
-		return this.getValor() - atributo.getValor();
+		return (int)this.getValor() - (int)atributo.getValor();
 	}
 	
 	@Override

@@ -2,36 +2,44 @@ package JuegoCartas;
 
 import java.util.*;
 
+import JuegoCartas.Pocima.Pocima;
+
 public class Carta {
 
 	private ArrayList<Atributo> atributos;
 	private String nombre;
-	private Atributo atributoElegido;
+	private Pocima pocima;
 	
 	public Carta(String nombre) {
 		this.nombre=nombre;
 		atributos= new ArrayList<>();
 	}
 	
-	public ArrayList<Atributo> getAtributos() {
-		return new ArrayList<>(this.atributos);
-	}
-	
 	public Atributo elegirAtributoAleatorio() {
-		atributoElegido= this.atributos.get(((int) (Math.random() * atributos.size())));
-		return atributoElegido;
+		return this.atributos.get(((int) (Math.random() * atributos.size())));
 	}
 	
-	public Atributo getAtributoElegido() {
-		return atributoElegido;
+	public double aplicarPocima(Atributo atributoElegido) {
+		if(pocima!=null) {
+			this.pocima.encantamiento(atributoElegido);
+		}
+		return atributoElegido.getValor();
+	}
+	
+	public Pocima getPocima() {
+		return pocima;
+	}
+
+	public void setPocima(Pocima pocima) {
+		this.pocima = pocima;
+	}
+	
+	public boolean tienePocima() {
+		return this.pocima!=null;
 	}
 	
 	public int getCantidadAtributos() {
-		int cantidad=0;
-		for(Atributo a: atributos) {
-			cantidad++;
-		}
-		return cantidad;
+		return atributos.size();
 	}
 	
 	public String getNombre() {
@@ -40,10 +48,6 @@ public class Carta {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-	public void setAtributoElegido(Atributo atributoElegido) {
-		this.atributoElegido = atributoElegido;
 	}
 
 	public void addAtributo(Atributo a) {
@@ -55,7 +59,7 @@ public class Carta {
 		}
 	}
 	
-	public void actualizarAtributo(String nombre, int valor) {
+	public void actualizarAtributo(String nombre, double valor) {
 		Atributo atr= this.getAtributoPorNombre(nombre);
 		if(atr!=null) {
 			atr.setValor(valor);
@@ -76,7 +80,7 @@ public class Carta {
 		return null;
 	}
 	
-	public Carta compararCartas(Carta carta) {
+	/*public Carta compararCartas(Carta carta, Atributo atributoElegido) {
 		if(this.atributoElegido.compareTo(carta.atributoElegido)>0){
 			return this;
 		}
@@ -86,7 +90,7 @@ public class Carta {
 		else {
 			return null;
 		}
-	}
+	}*/
 	//equals(preguntar cantidad, pregunta si tiene atributo con el mismo nombre).
 	@Override
 	public boolean equals(Object obj) {

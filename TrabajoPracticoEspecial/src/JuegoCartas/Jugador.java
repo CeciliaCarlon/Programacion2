@@ -17,6 +17,10 @@ public class Jugador {
 		return carta;
 	}
 	
+	public Atributo elegirAtributo(Carta c) {
+		return c.elegirAtributoAleatorio();
+	}
+	
 	public boolean posoVacio() {
 		if(poso.getCantidadCartas()==0) {
 			return true;
@@ -32,10 +36,6 @@ public class Jugador {
 
 	public String getNombre() {
 		return nombre;
-	}
-	
-	public int getCantidadCartas() {
-		return this.poso.getCantidadCartas();
 	}
 
 	public void setNombre(String nombre) {
@@ -62,8 +62,5 @@ public class Jugador {
 		return carta;
 	}
 	
-	public String toString() {
-		return 	"La carta de "+ this.getNombre()+" es "+this.getCarta().getNombre()+" con "+this.getCarta().getAtributoElegido().getNombre()+" "+this.getCarta().getAtributoElegido().getValor();
-	}
 	
 }

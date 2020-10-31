@@ -2,45 +2,37 @@ package JuegoCartas;
 
 import java.util.*;
 
+import JuegoCartas.Pocima.Pocima;
+
 public class Mazo {
 
 	private ArrayList<Carta> cartas;
-	private Criterio criterioCantidad;
-	private Criterio criterioTipo;
 	
 	public Mazo() {
 		cartas= new ArrayList<>();
 	}
 	
-	public Mazo(Carta c1, Carta c2) {
-		cartas= new ArrayList<>();
-		cartas.add(c1);
-		cartas.add(c2);
-	}
-	
-	public void mezclar() {
+	public void mezclarCartas() {
 		Collections.shuffle(cartas);
 	}
 	
-	public ArrayList<Carta> getCartas() {
-		return new ArrayList<>(this.cartas);
+	public void asignarPocima(Pocima pocima) {
+		Carta cartaElegida=cartas.get(((int) (Math.random() * cartas.size())));
+		if(!cartaElegida.tienePocima()){
+			cartaElegida.setPocima(pocima);
+		}
 	}
 	
 	public Carta getPrimeraCarta() {
-		Carta c= cartas.get(0);
-		return c;
+		return this.cartas.get(0);
 	}
 	
 	public int getCantidadCartas() {
-		int cantidad=0;
-		for(int i=0; i<this.cartas.size();i++) {
-			cantidad++;
-		}
-		return cantidad;
+		return cartas.size();
 	}
 	
 	public Carta getCartaElegida(Mazo mazo) {
-		ArrayList <Carta> cartas= mazo.getCartas();
+		ArrayList <Carta> cartas= mazo.cartas;
 		return cartas.get(((int) (Math.random() * cartas.size())));
 	}
 	
