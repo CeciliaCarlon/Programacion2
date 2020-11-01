@@ -15,8 +15,8 @@ public class Carta {
 		atributos= new ArrayList<>();
 	}
 	
-	public Atributo elegirAtributoAleatorio() {
-		return this.atributos.get(((int) (Math.random() * atributos.size())));
+	public Atributo getPrimerAtributo() {
+		return this.atributos.get(0);
 	}
 	
 	public double aplicarPocima(Atributo atributoElegido) {
@@ -32,6 +32,10 @@ public class Carta {
 
 	public void setPocima(Pocima pocima) {
 		this.pocima = pocima;
+	}
+	
+	public void removeAtributo(Atributo atributo) {
+		this.atributos.remove(atributo);
 	}
 	
 	public boolean tienePocima() {
@@ -69,7 +73,7 @@ public class Carta {
 	public boolean tieneAtributo(Atributo a) {
 		return atributos.contains(a);
 	}
-	
+
 	public Atributo getAtributoPorNombre(String nombre) {
 		for (int i=0; i<atributos.size();i++) {
 			Atributo a= atributos.get(i);
@@ -80,17 +84,6 @@ public class Carta {
 		return null;
 	}
 	
-	/*public Carta compararCartas(Carta carta, Atributo atributoElegido) {
-		if(this.atributoElegido.compareTo(carta.atributoElegido)>0){
-			return this;
-		}
-		else if(atributoElegido.compareTo(carta.atributoElegido)<0) {
-			return carta;
-		}
-		else {
-			return null;
-		}
-	}*/
 	//equals(preguntar cantidad, pregunta si tiene atributo con el mismo nombre).
 	@Override
 	public boolean equals(Object obj) {

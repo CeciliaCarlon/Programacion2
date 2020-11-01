@@ -56,7 +56,9 @@ public class Juego {
 					System.out.println("La carta de "+ jugador1.getNombre()+" es "+carta1.getNombre()+" con "+atributo1.getNombre()+" "+atributo1.getValor()+
 							", se aplico posima "+carta1.getPocima().getNombre()+" valor resultante "+carta1.aplicarPocima(atributo1));
 				}
-				System.out.println("La carta de "+ jugador1.getNombre()+" es "+carta1.getNombre()+" con "+atributo1.getNombre()+" "+atributo1.getValor());
+				else {
+					System.out.println("La carta de "+ jugador1.getNombre()+" es "+carta1.getNombre()+" con "+atributo1.getNombre()+" "+atributo1.getValor());
+				}
 				System.out.println("La carta de "+ jugador2.getNombre()+" es "+carta2.getNombre()+" con "+atributo2.getNombre()+" "+atributo2.getValor());
 			}
 			else {
@@ -68,7 +70,9 @@ public class Juego {
 					System.out.println("La carta de "+ jugador2.getNombre()+" es "+carta2.getNombre()+" con "+atributo2.getNombre()+" "+atributo2.getValor()+
 							", se aplico posima "+carta2.getPocima().getNombre()+" valor resultante "+carta2.aplicarPocima(atributo2));
 				}
-				System.out.println("La carta de "+ jugador2.getNombre()+" es "+carta2.getNombre()+" con "+atributo2.getNombre()+" "+atributo2.getValor());
+				else {
+					System.out.println("La carta de "+ jugador2.getNombre()+" es "+carta2.getNombre()+" con "+atributo2.getNombre()+" "+atributo2.getValor());
+				}
 			}
 			//SE COMPARAN LOS ATRIBUTOS Y SE AGREGA: LOS PUNTOS, LAS CARTAS AL GANADOR E IMPRIME POR PANTALLA
 			if(atributo1.compareTo(atributo2)>0) {
@@ -110,23 +114,32 @@ public class Juego {
 		this.mezclarPocimas();
 		Mazo poso1= new Mazo();
 		Mazo poso2= new Mazo();
-		for(int i=0; i<mazo.getCantidadCartas(); i++) {
+		int cantidad= mazo.getCantidadCartas();
+		for(int i=0; i<cantidad; i++) {
 			if(!turno) {
-				while(!pocimas.isEmpty()) {
+				if(!pocimas.isEmpty()) {
 					mazo.getPrimeraCarta().setPocima(this.pocimas.get(0));
 					this.removePocima(this.pocimas.get(0));
+					poso1.addCarta(this.mazo.getPrimeraCarta());
+					mazo.removeCarta(mazo.getPrimeraCarta());
 				}
-				poso1.addCarta(mazo.getPrimeraCarta());
-				mazo.removeCarta(mazo.getPrimeraCarta());
+				else {
+					poso1.addCarta(mazo.getPrimeraCarta());
+					mazo.removeCarta(mazo.getPrimeraCarta());
+				}
 				turno=true;
 			}
-			else if(turno){
-				while(!pocimas.isEmpty()) {
+			else{
+				if(!pocimas.isEmpty()) {
 					mazo.getPrimeraCarta().setPocima(this.pocimas.get(0));
 					this.removePocima(this.pocimas.get(0));
+					poso2.addCarta(mazo.getPrimeraCarta());
+					mazo.removeCarta(mazo.getPrimeraCarta());
 				}
-				poso2.addCarta(mazo.getPrimeraCarta());
-				mazo.removeCarta(mazo.getPrimeraCarta());
+				else {
+					poso2.addCarta(mazo.getPrimeraCarta());
+					mazo.removeCarta(mazo.getPrimeraCarta());
+				}
 				turno=false;
 			}
 		}

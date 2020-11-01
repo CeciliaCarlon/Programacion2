@@ -1,15 +1,20 @@
 package JuegoCartas;
 
+import JuegoCartas.Estrategia.Estrategia;
+import JuegoCartas.Estrategia.EstrategiaTimbero;
+
 public class Jugador {
 	
 	private String nombre;
 	private int puntos;
 	private Mazo poso;
 	private Carta carta;
+	private Estrategia estrategia;
 	
 	public Jugador(String nom) {
 		nombre=nom;
 		puntos=0;
+		estrategia= new EstrategiaTimbero();
 	}
 	
 	public Carta elegirCarta(Mazo poso) { 
@@ -18,9 +23,17 @@ public class Jugador {
 	}
 	
 	public Atributo elegirAtributo(Carta c) {
-		return c.elegirAtributoAleatorio();
+		return this.estrategia.elegirAtributo(c);
 	}
 	
+	public Estrategia getEstrategia() {
+		return estrategia;
+	}
+
+	public void setEstrategia(Estrategia estrategia) {
+		this.estrategia = estrategia;
+	}
+
 	public boolean posoVacio() {
 		if(poso.getCantidadCartas()==0) {
 			return true;

@@ -12,7 +12,11 @@ import javax.json.JsonReader;
 
 import JuegoCartas.Pocima.PocimaIncrementar;
 import JuegoCartas.Pocima.PocimaReductora;
+import JuegoCartas.Estrategia.Estrategia;
+import JuegoCartas.Estrategia.EstrategiaAmbicioso;
+import JuegoCartas.Estrategia.EstrategiaObstinado;
 import JuegoCartas.Pocima.Pocima;
+import JuegoCartas.Pocima.PocimaCocktail;
 import JuegoCartas.Pocima.PocimaValorEstatico;
 import JuegoCartas.Pocima.PocimaSelectiva;
 
@@ -53,22 +57,38 @@ public class Main {
     }
 
 	public static void main(String[] args) {
-		String mazoPath = "C:\\Users\\cecil\\eclipse-workspace2\\TrabajoPracticoEspecial\\src\\JuegoCartas\\superheroes.json";
+		String mazoPath = "C:\\Users\\cecil\\eclipse-workspace\\TrabajoPracticoEspecial\\src\\JuegoCartas\\superheroes.json";
 		Jugador cecilia= new Jugador("Cecilia");
-		Jugador carlos= new Jugador("Carlos");
+		Jugador victoria= new Jugador("Victoria");
 		Mazo mazo= new Mazo();
+		
 		mazo= cargarMazo(mazoPath);
-		Pocima fortalecedora1= new PocimaIncrementar("Fortalecedora", 20);
-		Pocima kriptonita= new PocimaReductora("Kriptonita",25);
-		Pocima valeCuatro= new PocimaValorEstatico("Quiero vale cuatro",4);
-		Pocima fuerza= new PocimaSelectiva("Selectiva fuerza",35, "fuerza");
-		Juego juego= new Juego(cecilia, carlos, mazo);
-		juego.addPocima(valeCuatro);
-		juego.addPocima(fortalecedora1);
-		juego.addPocima(fuerza);
-		juego.addPocima(kriptonita);
+		Pocima incrementar1= new PocimaIncrementar("Fortalecedora", 20);
+		Pocima reductora1= new PocimaReductora("Kriptonita",25);
+		Pocima valorEstatico1= new PocimaValorEstatico("Quiero vale cuatro",4);
+		Pocima selectiva1= new PocimaSelectiva("Selectiva fuerza",35, "fuerza");
+		Pocima incrementar2= new PocimaIncrementar("Fortalecedora Plus", 50);
+		Pocima reductora2= new PocimaReductora("Reductor de Plomo", 55);
+		Pocima valorEstatico2= new PocimaValorEstatico("Numero Magico", 23);
+		Pocima selectiva2= new PocimaSelectiva("Selectiva peso", 43, "peso");
+		Pocima cocktail= new PocimaCocktail("Cocktail",selectiva1, incrementar1);
+		Estrategia ambicioso= new EstrategiaAmbicioso();
+		Estrategia obstinado= new EstrategiaObstinado("fuerza");
+		
+		Juego juego= new Juego(50,cecilia, victoria, mazo);
+		juego.addPocima(valorEstatico1);
+		juego.addPocima(valorEstatico2);
+		juego.addPocima(incrementar1);
+		juego.addPocima(incrementar2);
+		juego.addPocima(selectiva1);
+		juego.addPocima(selectiva2);
+		juego.addPocima(reductora1);
+		juego.addPocima(reductora2);
+		juego.addPocima(cocktail);
+		cecilia.setEstrategia(ambicioso);
+		victoria.setEstrategia(obstinado);
+		
 		juego.jugar();
-		System.out.println(juego.getJugador1().getCarta().getPocima());
 
 	}
 
