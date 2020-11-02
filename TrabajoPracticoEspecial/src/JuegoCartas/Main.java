@@ -85,8 +85,8 @@ public class Main {
 		juego.addPocima(reductora1);
 		juego.addPocima(reductora2);
 		juego.addPocima(cocktail);
-		cecilia.setEstrategia(ambicioso);
-		victoria.setEstrategia(obstinado);
+		//cecilia.setEstrategia(ambicioso);
+		//victoria.setEstrategia(obstinado);
 		
 		juego.jugar();
 

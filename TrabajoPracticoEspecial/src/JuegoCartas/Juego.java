@@ -64,7 +64,7 @@ public class Juego {
 			else {
 				atributo2=jugador2.elegirAtributo(carta2);
 				atributo1=carta1.getAtributoPorNombre(atributo2.getNombre());
-				System.out.println("El jugador "+jugador2.getNombre()+" selecciona competir por el atributo "+atributo2.getNombre());
+				System.out.println("El jugador "+jugador2.	getNombre()+" selecciona competir por el atributo "+atributo2.getNombre());
 				System.out.println("La carta de "+ jugador1.getNombre()+" es "+carta1.getNombre()+" con "+atributo1.getNombre()+" "+atributo1.getValor());
 				if(carta2.tienePocima()) {
 					System.out.println("La carta de "+ jugador2.getNombre()+" es "+carta2.getNombre()+" con "+atributo2.getNombre()+" "+atributo2.getValor()+

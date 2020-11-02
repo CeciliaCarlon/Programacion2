@@ -3,7 +3,7 @@ package JuegoCartas.Estrategia;
 import JuegoCartas.Atributo;
 import JuegoCartas.Carta;
 
-public class EstrategiaObstinado implements Estrategia {
+public class EstrategiaObstinado extends Estrategia {
 	
 	private String nombreAtributo;
 	
@@ -12,7 +12,7 @@ public class EstrategiaObstinado implements Estrategia {
 	}
 	
 	public Atributo elegirAtributo(Carta carta) {
-		Carta cartaNueva= carta;
+		super.cartaNueva= carta;
 		Atributo atributo= cartaNueva.getPrimerAtributo();
 		cartaNueva.removeAtributo(atributo);
 		int limite=cartaNueva.getCantidadAtributos();
@@ -20,7 +20,7 @@ public class EstrategiaObstinado implements Estrategia {
 			if(!atributo.getNombre().equals(nombreAtributo)) {
 				atributo= cartaNueva.getPrimerAtributo();
 			}
-			cartaNueva.removeAtributo(atributo);
+			cartaNueva.removeAtributo(cartaNueva.getPrimerAtributo());
 		}
 		return atributo;
 	}

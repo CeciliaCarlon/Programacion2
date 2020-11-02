@@ -3,7 +3,9 @@ package JuegoCartas.Estrategia;
 import JuegoCartas.Atributo;
 import JuegoCartas.Carta;
 
-public interface Estrategia {
+public abstract class Estrategia {
 
-	public Atributo elegirAtributo(Carta carta);
+	protected Carta cartaNueva;
+	
+	public abstract Atributo elegirAtributo(Carta carta);
 }

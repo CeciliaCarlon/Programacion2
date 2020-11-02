@@ -3,10 +3,10 @@ package JuegoCartas.Estrategia;
 import JuegoCartas.Atributo;
 import JuegoCartas.Carta;
 
-public class EstrategiaAmbicioso implements Estrategia {
+public class EstrategiaAmbicioso extends Estrategia {
 	
 	public Atributo elegirAtributo(Carta carta) {
-		Carta cartaNueva= carta;
+		super.cartaNueva= carta;
 		Atributo atributoMasAlto=cartaNueva.getPrimerAtributo();
 		cartaNueva.removeAtributo(atributoMasAlto);
 		int limite=cartaNueva.getCantidadAtributos();
@@ -14,7 +14,7 @@ public class EstrategiaAmbicioso implements Estrategia {
 			if(cartaNueva.getPrimerAtributo().compareTo(atributoMasAlto)>0) {
 				atributoMasAlto=cartaNueva.getPrimerAtributo();
 			}
-			cartaNueva.removeAtributo(atributoMasAlto);
+			cartaNueva.removeAtributo(cartaNueva.getPrimerAtributo());
 		}
 		return atributoMasAlto;
 	}

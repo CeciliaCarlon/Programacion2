@@ -75,13 +75,13 @@ public class Carta {
 	}
 
 	public Atributo getAtributoPorNombre(String nombre) {
-		for (int i=0; i<atributos.size();i++) {
-			Atributo a= atributos.get(i);
-			if(a.getNombre().equals(nombre)) {
-				return a;
+		Atributo a=null;
+		for (Atributo atributo: atributos) {
+			if(atributo.getNombre().equals(nombre)) {
+				a=atributo;
 			}
 		}
-		return null;
+		return a;
 	}
 	
 	//equals(preguntar cantidad, pregunta si tiene atributo con el mismo nombre).
