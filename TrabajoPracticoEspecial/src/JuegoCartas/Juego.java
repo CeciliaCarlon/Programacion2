@@ -41,20 +41,20 @@ public class Juego {
 		Mazo poso2= jugador2.getPoso();
 		while((!jugador1.posoVacio()) && (!jugador2.posoVacio()) && (rondas<=MAXRONDAS)) {
 			System.out.println("------- Ronda "+this.rondas+" -------");
-			Carta carta1=jugador1.elegirCarta(poso1);
-			Carta carta2=jugador2.elegirCarta(poso2);
+			Carta carta1=jugador1.elegirCarta();
+			Carta carta2=jugador2.elegirCarta();
 			Atributo atributo1;
 			Atributo atributo2;
 			poso1.removeCarta(carta1);
 			poso2.removeCarta(carta2);
 			//SE ELIGE EL ATRIBUTO POR EL CUAL SE COMPITE Y SE IMPRIME POR PANTALLA
-			if(turno==false) {
+			if(!turno) {
 				atributo1=jugador1.elegirAtributo(carta1);
 				atributo2=carta2.getAtributoPorNombre(atributo1.getNombre());
 				System.out.println("El jugador "+jugador1.getNombre()+" selecciona competir por el atributo "+atributo1.getNombre());
 				if(carta1.tienePocima()) {
 					System.out.println("La carta de "+ jugador1.getNombre()+" es "+carta1.getNombre()+" con "+atributo1.getNombre()+" "+atributo1.getValor()+
-							", se aplico posima "+carta1.getPocima().getNombre()+" valor resultante "+carta1.aplicarPocima(atributo1));
+							", se aplico posima "+carta1.getPocima().getNombre()+" valor resultante "+carta1.getPocima().encantamiento(atributo1));
 				}
 				else {
 					System.out.println("La carta de "+ jugador1.getNombre()+" es "+carta1.getNombre()+" con "+atributo1.getNombre()+" "+atributo1.getValor());
@@ -68,7 +68,7 @@ public class Juego {
 				System.out.println("La carta de "+ jugador1.getNombre()+" es "+carta1.getNombre()+" con "+atributo1.getNombre()+" "+atributo1.getValor());
 				if(carta2.tienePocima()) {
 					System.out.println("La carta de "+ jugador2.getNombre()+" es "+carta2.getNombre()+" con "+atributo2.getNombre()+" "+atributo2.getValor()+
-							", se aplico posima "+carta2.getPocima().getNombre()+" valor resultante "+carta2.aplicarPocima(atributo2));
+							", se aplico posima "+carta2.getPocima().getNombre()+" valor resultante "+carta2.getPocima().encantamiento(atributo2));
 				}
 				else {
 					System.out.println("La carta de "+ jugador2.getNombre()+" es "+carta2.getNombre()+" con "+atributo2.getNombre()+" "+atributo2.getValor());
@@ -104,7 +104,6 @@ public class Juego {
 		}
 		else {
 			System.out.println("El ganador del juego es "+ ganador.getNombre());
-			this.devolverCartasAMazo(poso1, poso2);
 		}
 	}
 	
@@ -118,47 +117,24 @@ public class Juego {
 		for(int i=0; i<cantidad; i++) {
 			if(!turno) {
 				if(!pocimas.isEmpty()) {
-					mazo.getPrimeraCarta().setPocima(this.pocimas.get(0));
+					mazo.getCartaPorPosicion(i).setPocima(this.pocimas.get(0));
 					this.removePocima(this.pocimas.get(0));
-					poso1.addCarta(this.mazo.getPrimeraCarta());
-					mazo.removeCarta(mazo.getPrimeraCarta());
 				}
-				else {
-					poso1.addCarta(mazo.getPrimeraCarta());
-					mazo.removeCarta(mazo.getPrimeraCarta());
-				}
+				poso1.addCarta(mazo.getCartaPorPosicion(i));
 				turno=true;
 			}
 			else{
 				if(!pocimas.isEmpty()) {
-					mazo.getPrimeraCarta().setPocima(this.pocimas.get(0));
+					mazo.getCartaPorPosicion(i).setPocima(this.pocimas.get(0));
 					this.removePocima(this.pocimas.get(0));
-					poso2.addCarta(mazo.getPrimeraCarta());
-					mazo.removeCarta(mazo.getPrimeraCarta());
 				}
-				else {
-					poso2.addCarta(mazo.getPrimeraCarta());
-					mazo.removeCarta(mazo.getPrimeraCarta());
-				}
+				poso2.addCarta(mazo.getCartaPorPosicion(i));
 				turno=false;
 			}
 		}
 		posos.add(poso1);
 		posos.add(poso2);
 		return posos;
-	}
-	
-	public void devolverCartasAMazo(Mazo poso1, Mazo poso2) {
-		int limite= poso1.getCantidadCartas();
-		for(int i=0; i<limite; i++) {
-			mazo.addCarta(poso1.getPrimeraCarta());
-			poso1.removeCarta(poso1.getPrimeraCarta());
-		}
-		limite= poso2.getCantidadCartas();
-		for(int i=0; i<limite; i++) {
-			mazo.addCarta(poso2.getPrimeraCarta());
-			poso2.removeCarta(poso2.getPrimeraCarta());
-		}
 	}
 	
 	public Jugador getGanador() {

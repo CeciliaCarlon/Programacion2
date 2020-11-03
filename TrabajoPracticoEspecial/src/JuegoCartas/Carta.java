@@ -15,17 +15,6 @@ public class Carta {
 		atributos= new ArrayList<>();
 	}
 	
-	public Atributo getPrimerAtributo() {
-		return this.atributos.get(0);
-	}
-	
-	public double aplicarPocima(Atributo atributoElegido) {
-		if(pocima!=null) {
-			this.pocima.encantamiento(atributoElegido);
-		}
-		return atributoElegido.getValor();
-	}
-	
 	public Pocima getPocima() {
 		return pocima;
 	}
@@ -34,12 +23,20 @@ public class Carta {
 		this.pocima = pocima;
 	}
 	
-	public void removeAtributo(Atributo atributo) {
-		this.atributos.remove(atributo);
-	}
-	
 	public boolean tienePocima() {
 		return this.pocima!=null;
+	}
+	
+	public Atributo getPrimerAtributo() {
+		return this.atributos.get(0);
+	}
+	
+	public Atributo getAtributoPorPosicion(int n) {
+		return this.atributos.get(n);
+	}
+	
+	public void removeAtributo(Atributo atributo) {
+		this.atributos.remove(atributo);
 	}
 	
 	public int getCantidadAtributos() {
@@ -84,6 +81,14 @@ public class Carta {
 		return a;
 	}
 	
+	public ArrayList<String> getNombresDeAtributos(){
+		ArrayList<String> nombres=new ArrayList<String>();
+		for(Atributo a: atributos) {
+			nombres.add(a.getNombre());
+		}
+		return nombres;
+	}
+	
 	//equals(preguntar cantidad, pregunta si tiene atributo con el mismo nombre).
 	@Override
 	public boolean equals(Object obj) {
@@ -94,6 +99,10 @@ public class Carta {
 				for(Atributo atributo: atributos) {
 					if(c.tieneAtributo(atributo)) {
 						resultado= true;
+					}
+					else {
+						resultado=false;
+						return resultado;
 					}
 				}
 			}

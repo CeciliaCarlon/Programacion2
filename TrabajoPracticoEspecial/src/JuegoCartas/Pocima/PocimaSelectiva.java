@@ -4,12 +4,11 @@ import JuegoCartas.Atributo;
 
 public class PocimaSelectiva extends Pocima {
 
-	private int valorPorcentaje;
 	private String tipoAtributo;
 	
 	public PocimaSelectiva(String nombre, int porcentaje, String tipo) {
 		super(nombre);
-		this.valorPorcentaje= porcentaje;
+		valorPorcentaje= porcentaje;
 		this.tipoAtributo= tipo;
 	}
 

@@ -8,7 +8,6 @@ public class Jugador {
 	private String nombre;
 	private int puntos;
 	private Mazo poso;
-	private Carta carta;
 	private Estrategia estrategia;
 	
 	public Jugador(String nom) {
@@ -17,8 +16,8 @@ public class Jugador {
 		estrategia= new EstrategiaTimbero();
 	}
 	
-	public Carta elegirCarta(Mazo poso) { 
-		carta=poso.getCartaElegida(poso);
+	public Carta elegirCarta() { 
+		Carta carta=this.poso.getCartaElegida();
 		return carta;
 	}
 	
@@ -69,10 +68,6 @@ public class Jugador {
 
 	public void setPoso(Mazo poso) {
 		this.poso = poso;
-	}
-
-	public Carta getCarta() {
-		return carta;
 	}
 	
 	

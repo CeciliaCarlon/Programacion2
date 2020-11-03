@@ -3,12 +3,10 @@ package JuegoCartas.Pocima;
 import JuegoCartas.Atributo;
 
 public class PocimaIncrementar extends Pocima {
-
-	private int valorPorcentaje;
 	
 	public PocimaIncrementar(String nombre, int porcentaje) {
 		super(nombre);
-		this.valorPorcentaje= porcentaje;
+		valorPorcentaje= porcentaje;
 	}
 
 	@Override

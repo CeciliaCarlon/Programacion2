@@ -12,16 +12,6 @@ public class EstrategiaObstinado extends Estrategia {
 	}
 	
 	public Atributo elegirAtributo(Carta carta) {
-		super.cartaNueva= carta;
-		Atributo atributo= cartaNueva.getPrimerAtributo();
-		cartaNueva.removeAtributo(atributo);
-		int limite=cartaNueva.getCantidadAtributos();
-		for(int i=0; i<limite; i++) {
-			if(!atributo.getNombre().equals(nombreAtributo)) {
-				atributo= cartaNueva.getPrimerAtributo();
-			}
-			cartaNueva.removeAtributo(cartaNueva.getPrimerAtributo());
-		}
-		return atributo;
+		return carta.getAtributoPorNombre(nombreAtributo);
 	}
 }

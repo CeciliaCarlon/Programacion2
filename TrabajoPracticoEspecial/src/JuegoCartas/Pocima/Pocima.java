@@ -4,9 +4,10 @@ import JuegoCartas.Atributo;
 
 public abstract class Pocima {
 	
+	protected int valorPorcentaje;
 	protected String nombre;
 	
-	public Pocima (String nombre) {
+	protected Pocima (String nombre) {
 		this.nombre= nombre;
 	}
 	
@@ -16,5 +17,15 @@ public abstract class Pocima {
 		return nombre;
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		Pocima pocima= (Pocima) obj;
+		try {
+			return this.getNombre().equals(pocima.getNombre());
+		}
+		catch(Exception e) {
+			return false;
+		}
+	}
 	
 }
