@@ -44,9 +44,4 @@ public class Mazo {
 	public void removeCarta(Carta carta) {
 		cartas.remove(carta);
 	}
-	
-	@Override
-	public String toString() {
-		return cartas.toString();
-	}
 }

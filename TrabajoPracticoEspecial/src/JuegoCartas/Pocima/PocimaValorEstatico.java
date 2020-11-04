@@ -13,8 +13,6 @@ public class PocimaValorEstatico extends Pocima {
 
 	@Override
 	public double encantamiento(Atributo atributo) {
-		Atributo nuevo= atributo;
-		nuevo.setValor(valorFijo);
 		return this.valorFijo;
 	}
 

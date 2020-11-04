@@ -14,12 +14,10 @@ public class PocimaSelectiva extends Pocima {
 
 	@Override
 	public double encantamiento(Atributo atributo) {
-		Atributo nuevo= atributo;
-		double valorFinal=0;
-		if(nuevo.getNombre().equals(tipoAtributo)) {
+		double valorFinal=atributo.getValor();
+		if(atributo.getNombre().equals(tipoAtributo)) {
 			double porcentaje= (valorPorcentaje/100)+1;
-			valorFinal= nuevo.getValor()*porcentaje;
-			nuevo.setValor(valorFinal);
+			valorFinal= atributo.getValor()*porcentaje;
 		}
 		return valorFinal;
 	}

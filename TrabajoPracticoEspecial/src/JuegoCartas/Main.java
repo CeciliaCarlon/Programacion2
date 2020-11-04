@@ -75,8 +75,6 @@ public class Main {
 		Pocima valorEstatico2= new PocimaValorEstatico("Numero Magico", 23);
 		Pocima selectiva1= new PocimaSelectiva("Selectiva fuerza",35, "fuerza");
 		Pocima selectiva2= new PocimaSelectiva("Selectiva peso", 43, "peso");
-		Pocima cocktail1= new PocimaCocktail("Cocktail",selectiva1, incrementar1);
-		Pocima cocktail2= new PocimaCocktail("Cocktail", reductora2, valorEstatico1);
 		Pocima incrementar3= new PocimaIncrementar("Fortalecedora MAX", 90);
 		Pocima incrementar4= new PocimaIncrementar("Fortalecedora MIN", 5);
 		Pocima reductora3= new PocimaReductora("Reducir",5);
@@ -85,8 +83,10 @@ public class Main {
 		Pocima valorEstatico4= new PocimaValorEstatico("Numero Mistico", 66);
 		Pocima selectiva3= new PocimaSelectiva("Selectiva peleas ganadas",15, "peleas ganadas");
 		Pocima selectiva4= new PocimaSelectiva("Selectiva velocidad", 70, "velocidad");
-		Pocima cocktail3= new PocimaCocktail("Cocktail",selectiva4, incrementar3);
-		Pocima cocktail4= new PocimaCocktail("Cocktail", reductora3, valorEstatico1);
+		Pocima cocktail1= new PocimaCocktail("Cocktail1",valorEstatico1, incrementar2);
+		Pocima cocktail2= new PocimaCocktail("Cocktail2", incrementar4, reductora1);
+		Pocima cocktail3= new PocimaCocktail("Cocktail3",reductora1, incrementar4);
+		Pocima cocktail4= new PocimaCocktail("Cocktail4", reductora3, incrementar2);
 	
 		//ESTRATEGIAS
 		Estrategia ambicioso= new EstrategiaAmbicioso();
@@ -124,6 +124,8 @@ public class Main {
 		
 		//EJECUTAR JUEGO
 		juego.jugar();
+		System.out.println(mazo1.getPrimeraCarta().getNombre()+" - "+mazo1.getPrimeraCarta().getPrimerAtributo().getValor());
+		System.out.println(mazo1.getPrimeraCarta().getPocima().getNombre()+"= "+mazo1.getPrimeraCarta().encantar(mazo1.getPrimeraCarta().getPrimerAtributo()));
 
 	}
 

@@ -11,11 +11,8 @@ public class PocimaReductora extends Pocima {
 
 	@Override
 	public double encantamiento(Atributo atributo) {
-		Atributo nuevo= atributo;
-		double porcentaje= (nuevo.getValor()*this.valorPorcentaje)/100;
-		double valorFinal= nuevo.getValor()-porcentaje;
-		nuevo.setValor(valorFinal);
-		return valorFinal;
+		double porcentaje= (atributo.getValor()*this.valorPorcentaje)/100;
+		return atributo.getValor()-porcentaje;
 	}
 
 }

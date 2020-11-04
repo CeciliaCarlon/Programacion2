@@ -3,7 +3,7 @@ package JuegoCartas.Estrategia;
 import JuegoCartas.Atributo;
 import JuegoCartas.Carta;
 
-public class EstrategiaObstinado extends Estrategia {
+public class EstrategiaObstinado implements Estrategia {
 	
 	private String nombreAtributo;
 	

@@ -11,11 +11,12 @@ public class Juego {
 	private Mazo mazo;
 	private int rondas;
 	private boolean turno;
-	private int MAXRONDAS=10;
+	private int MAXRONDAS;
 	private ArrayList<Pocima> pocimas;
 	
 	public Juego(Jugador j1, Jugador j2, Mazo mazo) {
 		rondas=1;
+		MAXRONDAS=10;
 		this.jugador1=j1;
 		this.jugador2=j2;
 		this.mazo=mazo;
@@ -35,10 +36,10 @@ public class Juego {
 	public void jugar() {
 		//SE SETEAN POSOS, CARTAS Y ATRIBUTOS.
 		ArrayList<Mazo> posos=this.repartir();
-		jugador1.setPoso(posos.get(0));
-		jugador2.setPoso(posos.get(1));
-		Mazo poso1= jugador1.getPoso();
-		Mazo poso2= jugador2.getPoso();
+		Mazo poso1= posos.get(0);
+		Mazo poso2= posos.get(1);
+		jugador1.setPoso(poso1);
+		jugador2.setPoso(poso2);
 		while((!jugador1.posoVacio()) && (!jugador2.posoVacio()) && (rondas<=MAXRONDAS)) {
 			System.out.println("------- Ronda "+this.rondas+" -------");
 			Carta carta1=jugador1.elegirCarta();
@@ -54,7 +55,7 @@ public class Juego {
 				System.out.println("El jugador "+jugador1.getNombre()+" selecciona competir por el atributo "+atributo1.getNombre());
 				if(carta1.tienePocima()) {
 					System.out.println("La carta de "+ jugador1.getNombre()+" es "+carta1.getNombre()+" con "+atributo1.getNombre()+" "+atributo1.getValor()+
-							", se aplico posima "+carta1.getPocima().getNombre()+" valor resultante "+carta1.getPocima().encantamiento(atributo1));
+							", se aplico pocima "+carta1.getPocima().getNombre()+" valor resultante "+carta1.encantar(atributo1));
 				}
 				else {
 					System.out.println("La carta de "+ jugador1.getNombre()+" es "+carta1.getNombre()+" con "+atributo1.getNombre()+" "+atributo1.getValor());
@@ -68,7 +69,7 @@ public class Juego {
 				System.out.println("La carta de "+ jugador1.getNombre()+" es "+carta1.getNombre()+" con "+atributo1.getNombre()+" "+atributo1.getValor());
 				if(carta2.tienePocima()) {
 					System.out.println("La carta de "+ jugador2.getNombre()+" es "+carta2.getNombre()+" con "+atributo2.getNombre()+" "+atributo2.getValor()+
-							", se aplico posima "+carta2.getPocima().getNombre()+" valor resultante "+carta2.getPocima().encantamiento(atributo2));
+							", se aplico pocima "+carta2.getPocima().getNombre()+" valor resultante "+carta2.encantar(atributo2));
 				}
 				else {
 					System.out.println("La carta de "+ jugador2.getNombre()+" es "+carta2.getNombre()+" con "+atributo2.getNombre()+" "+atributo2.getValor());
@@ -100,7 +101,7 @@ public class Juego {
 		//SALE DEL WHILE E IMPRIME AL GANADOR.
 		Jugador ganador=this.getGanador();
 		if(ganador==null) {
-			System.out.println("Empate!!");
+			System.out.println("Empate en el juego!!");
 		}
 		else {
 			System.out.println("El ganador del juego es "+ ganador.getNombre());
@@ -140,9 +141,11 @@ public class Juego {
 	public Jugador getGanador() {
 		if (jugador1.getPuntos()>jugador2.getPuntos()) {
 			return jugador1;
-		} else if (jugador2.getPuntos()>jugador1.getPuntos()) {
+		} 
+		else if (jugador2.getPuntos()>jugador1.getPuntos()) {
 			return jugador2;
-		} else {
+		} 
+		else {
 			return null;
 		}
 	}	
@@ -185,7 +188,6 @@ public class Juego {
 
 	public void setJugador2(Jugador jugador2) {
 		this.jugador2 = jugador2;
-	}
-	
+	}	
 	
 }

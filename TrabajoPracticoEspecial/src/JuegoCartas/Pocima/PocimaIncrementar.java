@@ -11,11 +11,8 @@ public class PocimaIncrementar extends Pocima {
 
 	@Override
 	public double encantamiento(Atributo atributo) {
-		Atributo nuevo= atributo;
-		double porcentaje= (valorPorcentaje/100)+1;
-		double valorFinal= nuevo.getValor()*porcentaje;
-		nuevo.setValor(valorFinal);
-		return valorFinal;
+		double porcentaje= valorPorcentaje+100;
+		return (atributo.getValor()/100)*porcentaje;
 	}
 
 }

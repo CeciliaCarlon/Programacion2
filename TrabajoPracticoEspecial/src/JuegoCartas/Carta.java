@@ -18,6 +18,10 @@ public class Carta {
 	public Pocima getPocima() {
 		return pocima;
 	}
+	
+	public double encantar(Atributo a) {
+		return pocima.encantamiento(a);
+	}
 
 	public void setPocima(Pocima pocima) {
 		this.pocima = pocima;
@@ -25,6 +29,14 @@ public class Carta {
 	
 	public boolean tienePocima() {
 		return this.pocima!=null;
+	}
+	
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 	
 	public Atributo getPrimerAtributo() {
@@ -41,14 +53,6 @@ public class Carta {
 	
 	public int getCantidadAtributos() {
 		return atributos.size();
-	}
-	
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
 	}
 
 	public void addAtributo(Atributo a) {
@@ -112,9 +116,4 @@ public class Carta {
 			return false;
 		}
 	} 
-	
-	@Override
-	public String toString() {
-		return atributos.toString();
-	}
 }

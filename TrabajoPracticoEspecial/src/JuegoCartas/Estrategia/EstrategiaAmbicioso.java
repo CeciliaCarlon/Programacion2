@@ -3,7 +3,7 @@ package JuegoCartas.Estrategia;
 import JuegoCartas.Atributo;
 import JuegoCartas.Carta;
 
-public class EstrategiaAmbicioso extends Estrategia {
+public class EstrategiaAmbicioso implements Estrategia {
 	
 	public Atributo elegirAtributo(Carta carta) {
 		Atributo atributoMasAlto=carta.getPrimerAtributo();

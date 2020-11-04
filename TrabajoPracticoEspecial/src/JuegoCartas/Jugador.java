@@ -70,5 +70,4 @@ public class Jugador {
 		this.poso = poso;
 	}
 	
-	
 }

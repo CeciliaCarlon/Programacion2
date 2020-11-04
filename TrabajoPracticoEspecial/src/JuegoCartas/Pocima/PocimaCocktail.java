@@ -17,9 +17,9 @@ public class PocimaCocktail extends Pocima {
 	public double encantamiento(Atributo atributo) {
 		Atributo nuevo= atributo;
 		double valorFinal=nuevo.getValor();
-		valorFinal=p1.encantamiento(atributo)+p2.encantamiento(atributo);
+		valorFinal=p1.encantamiento(nuevo);
 		nuevo.setValor(valorFinal);
-		return nuevo.getValor();
+		return p2.encantamiento(nuevo);
 	}
 
 }
